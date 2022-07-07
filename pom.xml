@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>swaggerdemo</artifactId>
 	<version>0.0.1</version>
-	<name>qaiserdemo</name>
+	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -60,6 +60,16 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.7.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<configuration>
+					<repository>${project.groupId}/${project.artifactId}/${project.version}</repository>
+					<contextDirectory>.</contextDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
