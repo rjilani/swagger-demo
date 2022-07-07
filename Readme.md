@@ -50,3 +50,9 @@
 
 ## on windows
 `mvn spring-boot:run '-Dspring-boot.run.profiles=dev'`
+
+## how to create and run the docker image
+
+`docker build -t swagger-demo:1.0 .`
+
+`docker run -d -p 8080:8080 -t swagger-demo:1.0`
