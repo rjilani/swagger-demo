@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<SWAGGERHUB_APIKEY>xxxxxxxx</SWAGGERHUB_APIKEY>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,6 +49,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swaggerhub-maven-plugin</artifactId>
+			<version>1.0.9</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -68,11 +76,11 @@
 				<version>1.4.13</version>
 				<executions>
 					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-							<goal>push</goal>
-						</goals>
+<!--						<id>default</id>-->
+<!--						<goals>-->
+<!--							<goal>build</goal>-->
+<!--							<goal>push</goal>-->
+<!--						</goals>-->
 					</execution>
 				</executions>
 				<configuration>
@@ -83,6 +91,43 @@
 					</buildArgs>
 <!--					<contextDirectory>.</contextDirectory>-->
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>io.swagger</groupId>
+				<artifactId>swaggerhub-maven-plugin</artifactId>
+				<version>1.0.9</version>
+				<executions>
+					<execution>
+						<id>don</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>download</goal>
+						</goals>
+						<configuration>
+							<api>rashidtest</api>
+							<owner>RJILANI_1</owner>
+							<version>1.0</version>
+							<outputFile>target/swagger_demo.json</outputFile>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>up</id>
+						<phase>package</phase>
+						<goals>
+							<goal>upload</goal>
+						</goals>
+						<configuration>
+							<api>rashidtest</api>
+							<owner>RJILANI_1</owner>
+							<version>2.0</version>
+							<inputFile>./swagger_demo.json</inputFile>
+							<token>${SWAGGERHUB_APIKEY}</token>
+							<uploadType>inputFile</uploadType>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
