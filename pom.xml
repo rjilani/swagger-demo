@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<SWAGGERHUB_APIKEY>xxxxxxxx</SWAGGERHUB_APIKEY>
+<!--		<SWAGGERHUB_APIKEY>xxxxxxxx</SWAGGERHUB_APIKEY>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,12 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swaggerhub-maven-plugin</artifactId>
-			<version>1.0.9</version>
 		</dependency>
 
 	</dependencies>
@@ -98,19 +92,19 @@
 				<artifactId>swaggerhub-maven-plugin</artifactId>
 				<version>1.0.9</version>
 				<executions>
-					<execution>
-						<id>don</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>download</goal>
-						</goals>
-						<configuration>
-							<api>rashidtest</api>
-							<owner>RJILANI_1</owner>
-							<version>1.0</version>
-							<outputFile>target/swagger_demo.json</outputFile>
-						</configuration>
-					</execution>
+<!--					<execution>-->
+<!--						<id>don</id>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>download</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<api>rashidtest</api>-->
+<!--							<owner>RJILANI_1</owner>-->
+<!--							<version>1.0</version>-->
+<!--							<outputFile>target/swagger_demo.json</outputFile>-->
+<!--						</configuration>-->
+<!--					</execution>-->
 
 					<execution>
 						<id>up</id>
@@ -119,13 +113,50 @@
 							<goal>upload</goal>
 						</goals>
 						<configuration>
-							<api>rashidtest</api>
+							<api>rashidtestnew</api>
 							<owner>RJILANI_1</owner>
 							<version>2.0</version>
 							<inputFile>./swagger_demo.json</inputFile>
-							<token>${SWAGGERHUB_APIKEY}</token>
+<!--							<token>${SWAGGERHUB_APIKEY}</token>-->
+							<token>${env.SWAGGERHUB_APIKEY}</token>
+
 							<uploadType>inputFile</uploadType>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.3.4.RELEASE</version>
+				<configuration>
+					<jvmArguments>-Dspring.application.admin.enabled=true</jvmArguments>
+				</configuration>
+				<executions>
+					<execution>
+						<id>pre-integration-test</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-maven-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
