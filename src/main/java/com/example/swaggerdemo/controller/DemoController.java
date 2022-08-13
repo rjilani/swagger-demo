@@ -37,6 +37,13 @@ public class DemoController {
         return "Hello World!";
     }
 
+    @GetMapping("/manager")
+    private String indexManager() {
+        System.out.println(name);
+        logger.info(String.format("calling method %s ", Thread.currentThread().getStackTrace()[1].getMethodName()));
+        return "Hello Manager!";
+    }
+
     @PostMapping("/person")
     private int savePerson(@RequestBody Person person) {
 
