@@ -78,8 +78,8 @@
                         <configuration>
                             <api>rashidtestnew</api>
                             <owner>RJILANI_1</owner>
-                            <version>6.0</version>
-                            <inputFile>./swagger_demo.json</inputFile>
+                            <version>7.0</version>
+                            <inputFile>${project.build.directory}/openapi.json</inputFile>
                             <token>${env.SWAGGERHUB_APIKEY}</token>
 
                             <uploadType>inputFile</uploadType>
