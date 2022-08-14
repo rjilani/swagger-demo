@@ -7,5 +7,5 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0
     steps:
-      - run: mvn package
+      - run: mvn verify
        
