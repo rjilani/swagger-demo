@@ -7,8 +7,11 @@
 `java -jar target/swaggerdemo-0.0.1.jar`
 
 ## How to test the scripts
-### There are 2 ways to test the script
+### There are 3 ways to test the script
 1. Manual testing can be done by importing **demo-app.postman_collection.json** into postman
+2. Automated testing via Newman
+
+`newman run -n 5 --delay-request 10 .\demo1-app.postman_collection.json -r htmlextra --reporter-htmlextra-logs`
 
 ### Or
 
